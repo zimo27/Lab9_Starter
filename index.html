@@ -69,21 +69,21 @@
     </form>
 
     <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
+      <button onclick="console.log('console.log')"> Console Log</button>
+      <button onclick="console.error('console.error')">Console Error</button>
+      <button onclick="console.count('console.count')">Console Count</button>
+      <button onclick="console.warn('console.warn')">Console Warn</button>
+      <button onclick="console.assert(false, 'console.assert')">Console Assert</button>
+      <button onclick='console.clear()'>Console Clear</button>
+      <button onclcik="console.dir(document.head)">Console Dir</button>
+      <button onclcik="console.dirxml(document.querySelector('#second-num'))">Console dirxml</button>
+      <button onclick='console.group()'>Console Group Start</button>
+      <button onclick='console.groupEnd()'>Console Group End</button>
+      <button onclick="tablefcn">Console Table</button>
+      <button onclick='console.time()'>Start Timer</button>
+      <button onclick='console.timeEnd()'>End Timer</button>
+      <button onclick='console.trace()'>Console Trace</button>
+      <button onclick="console.error('global error')">Trigger a Global Error</button>
     </section>
   </main>
 
@@ -102,6 +102,36 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    function tablefcn() {
+      console.table([
+        {name: 'firstNum',
+         value: firstNum,},
+        {name: 'operator',
+         value: operator,},
+        {name: 'secondNum',
+         value: secondNum,},
+        {name: 'ouput',
+         value: output,}
+      ]);
+    }
+
+  class CoolError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "CoolError";
+  }
+}
+
+    try{
+      console.dirxml('kkk');
+    } catch (error){
+      console.log('error discovered');
+      throw new CoolError('warnining');
+    } finally {
+      console.log('finally done');
+    }
+
+
   </script>
 </body>
 
