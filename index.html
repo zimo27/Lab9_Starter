@@ -75,17 +75,25 @@
       <button onclick="console.warn('console.warn')">Console Warn</button>
       <button onclick="console.assert(false, 'console.assert')">Console Assert</button>
       <button onclick='console.clear()'>Console Clear</button>
-      <button onclcik="console.dir(document.head)">Console Dir</button>
-      <button onclcik="console.dirxml(document.querySelector('#second-num'))">Console dirxml</button>
+      <button onclcik='consoledir()'>Console Dir</button>
+      <button onclcik="console.dirxml('document.head')">Console dirxml</button>
       <button onclick='console.group()'>Console Group Start</button>
       <button onclick='console.groupEnd()'>Console Group End</button>
-      <button onclick="tablefcn">Console Table</button>
+      <button onclick="tablefcn()">Console Table</button>
       <button onclick='console.time()'>Start Timer</button>
       <button onclick='console.timeEnd()'>End Timer</button>
       <button onclick='console.trace()'>Console Trace</button>
       <button onclick="console.error('global error')">Trigger a Global Error</button>
     </section>
   </main>
+
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "91a0c6ab92e64ac28ebc8cd95007b824"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
 
   <script>
     let form = document.querySelector('form');
@@ -105,14 +113,18 @@
     function tablefcn() {
       console.table([
         {name: 'firstNum',
-         value: firstNum,},
+         value: '1',},
         {name: 'operator',
-         value: operator,},
+         value: '2',},
         {name: 'secondNum',
-         value: secondNum,},
+         value: '3',},
         {name: 'ouput',
-         value: output,}
+         value: '123',}
       ]);
+    }
+
+    function consoledir() {
+      console.dir(document.head);
     }
 
   class CoolError extends Error {
@@ -123,15 +135,18 @@
 }
 
     try{
-      console.dirxml('kkk');
+      //console.dirxml('kkk');
+      if (typeof document.querySelector('#first-num').value === 'boolean'){
+        throw new CoolError('not qual');
+        TrackJS.track('Testing TrackJS!');
+      }
     } catch (error){
       console.log('error discovered');
-      throw new CoolError('warnining');
     } finally {
       console.log('finally done');
     }
 
-
+    
   </script>
 </body>
 
